@@ -31,7 +31,7 @@ export class SignUpPage {
     this.page = page;
     this.signupHeader = page.locator('//*[@id="form"]/div/div/div/div/h2/b');
     this.mrRadioBtn = page.locator ('[id="id_gender1"]')
-    this.nameField = page.locator('data-qa="name"')
+    this.nameField = page.locator('[data-qa="name"]')
     this.mrsRadioBtn = page.locator ('[id="id_gender1"]')
     this.emailField = page.locator ('[data-qa="email"]')
     this.passwordField = page.locator ('[data-qa="password"]')
@@ -47,8 +47,8 @@ export class SignUpPage {
     this.address = page.locator ( '[data-qa="address"]')
     this.address2 = page.locator ( '[data-qa="address2"]')
     this.country = page.locator ( '[data-qa="country"]')
-    this.state =  page.locator ( '[data-qa="country"]')
-    this.city =  page.locator ( '[data-qa="country"]')
+    this.state =  page.locator ( '[data-qa="state"]')
+    this.city =  page.locator ( '[data-qa="city"]')
     this.zipcode =  page.locator ( '[data-qa="zipcode"]')
     this.mobileNumber =  page.locator ( '[data-qa="mobile_number"]')
     this.createBtn = page.locator('[data-qa="create-account"]')
@@ -56,20 +56,28 @@ export class SignUpPage {
 
   
 
-  async SignUp(name,email,password,date,month,year) {
+  async SignUp(name,email,password,date,month,year,address,country,state,city,zip,mobileNumber) {
     await this.mrRadioBtn.click();
-    await this.nameField.fill(name);
-    await this.emailField.fill(email);
+    //await this.nameField.fill(name);
+    //await this.emailField.fill(email);
     await this.passwordField.fill(password);
-    await this.dateField.fill(date);
-    await this.monthField.fill(month);
-    await this.yearField.fill(year);
+    await this.dateField.selectOption(date);
+    await this.monthField.selectOption(month);
+    await this.yearField.selectOption(year);
     await this.newsletter.click();
     await this.offers.click();
-
+    await this.firstName.fill(name);
+    await this.lastName.fill(name);
+    await this.address.fill(address);
+    await this.country.selectOption(country);
+    await this.state.fill(state);
+    await this.city.fill(city);
+    await this.zipcode.fill(zip);
+    await this.mobileNumber.fill(mobileNumber);
+    await this.createBtn.click();
   }
 
-  
+ 
 
  
 }
