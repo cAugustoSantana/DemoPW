@@ -9,17 +9,19 @@ export class LoginPage {
   readonly nameFieldSignUp: Locator;
   readonly emailFieldSignUp: Locator;
   readonly signupBtnSignUp: Locator;
+  readonly incorrectEmail: Locator;
 
 
   constructor(page: Page) {
     this.page = page;
     this.signupText = page.locator('//*[@id="form"]/div/div/div[3]/div/h2');
-    this.nameFieldSignUp = page.locator ('[data-qa="signup-name"]')
-    this.emailFieldSignUp = page.locator ('[data-qa="signup-email"]')
-    this.signupBtnSignUp = page.locator ('[data-qa="signup-button"]')
-    this.nameFieldLogin = page.locator ('[data-qa="login-email"]')
-    this.emailFieldLogin = page.locator ('[data-qa="login-password"]')
-    this.loginBtn = page.locator ('[data-qa="login-button"]')
+    this.nameFieldSignUp = page.locator ('[data-qa="signup-name"]');
+    this.emailFieldSignUp = page.locator ('[data-qa="signup-email"]');
+    this.signupBtnSignUp = page.locator ('[data-qa="signup-button"]');
+    this.nameFieldLogin = page.locator ('[data-qa="login-email"]');
+    this.emailFieldLogin = page.locator ('[data-qa="login-password"]');
+    this.loginBtn = page.locator ('[data-qa="login-button"]');
+    this.incorrectEmail = page.locator ('//*[@id="form"]/div/div/div[1]/div/form/p');
   }
 
   async login(a,b) {
@@ -38,6 +40,11 @@ export class LoginPage {
   async verifySignUpHeader(){
    await expect(this.signupText).toHaveText("New User Signup!")
   }
+
+  async verifyIncorrectEmail(){
+    await expect(this.incorrectEmail).toHaveText("Your email or password is incorrect!")
+   }
+
 
  
 }
