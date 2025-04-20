@@ -6,13 +6,17 @@ export class HomePage {
   readonly signup: Locator;
   readonly loggedIn: Locator;
   readonly deleteLink: Locator;
+  readonly loggedInMessage: Locator;
+  readonly logoutLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.homeLink = page.locator(':has-text("Home")');
     this.signup = page.locator ('[href="/login"]')
     this.loggedIn = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[10]');
-    this.deleteLink = page.locator ('//*[@id="header"]/div/div/div/div[2]/div/ul/li[5]/a')
+    this.deleteLink = page.locator ('//*[@id="header"]/div/div/div/div[2]/div/ul/li[5]/a');
+    this.loggedInMessage = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[10]/a');
+    this.logoutLink = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[4]/a');
   }
 
   async clickHome() {
@@ -24,11 +28,19 @@ export class HomePage {
     await this.signup.click();
   }
 
+  async verifyLogin(name){
+    await expect(this.loggedIn).toHaveText("Logged in as " + name);
+  }
+
   async verifyPageTitle() {
     await expect(this.page).toHaveTitle(/Automation Exercise/);
     console.log(this.homeLink)
   }
   async deleteAccount( ) {
     await this.deleteLink.click();
+  }
+
+  async logout(){
+    await this.logoutLink.click();
   }
 }

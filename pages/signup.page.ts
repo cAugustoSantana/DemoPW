@@ -56,7 +56,7 @@ export class SignUpPage {
 
   
 
-  async SignUp(name,email,password,date,month,year,address,country,state,city,zip,mobileNumber) {
+  async signUp(name,email,password,date,month,year,address,country,state,city,zip,mobileNumber) {
     await this.mrRadioBtn.click();
     //await this.nameField.fill(name);
     //await this.emailField.fill(email);

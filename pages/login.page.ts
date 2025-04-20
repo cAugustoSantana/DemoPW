@@ -3,25 +3,36 @@ import { expect, Locator, Page } from '@playwright/test';
 export class LoginPage {
   readonly page: Page;
   readonly signupText: Locator;
-  readonly nameField: Locator;
-  readonly emailField: Locator;
-  readonly signupBtn: Locator;
+  readonly nameFieldLogin: Locator;
+  readonly emailFieldLogin: Locator;
+  readonly loginBtn: Locator;
+  readonly nameFieldSignUp: Locator;
+  readonly emailFieldSignUp: Locator;
+  readonly signupBtnSignUp: Locator;
 
 
   constructor(page: Page) {
     this.page = page;
     this.signupText = page.locator('//*[@id="form"]/div/div/div[3]/div/h2');
-    this.nameField = page.locator ('[data-qa="signup-name"]')
-    this.emailField = page.locator ('[data-qa="signup-email"]')
-    this.signupBtn = page.locator ('[data-qa="signup-button"]')
+    this.nameFieldSignUp = page.locator ('[data-qa="signup-name"]')
+    this.emailFieldSignUp = page.locator ('[data-qa="signup-email"]')
+    this.signupBtnSignUp = page.locator ('[data-qa="signup-button"]')
+    this.nameFieldLogin = page.locator ('[data-qa="login-email"]')
+    this.emailFieldLogin = page.locator ('[data-qa="login-password"]')
+    this.loginBtn = page.locator ('[data-qa="login-button"]')
   }
 
+  async login(a,b) {
+    await this.nameFieldLogin.fill(a);
+    await this.emailFieldLogin.fill(b);
+    await this.loginBtn.click();
+  }
   
 
-  async SignUp(a,b) {
-    await this.nameField.fill(a);
-    await this.emailField.fill(b);
-    await this.signupBtn.click();
+  async signUp(a,b) {
+    await this.nameFieldSignUp.fill(a);
+    await this.emailFieldSignUp.fill(b);
+    await this.signupBtnSignUp.click();
   }
 
   async verifySignUpHeader(){
