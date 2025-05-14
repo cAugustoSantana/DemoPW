@@ -43,4 +43,8 @@ export class HomePage {
   async logout(){
     await this.logoutLink.click();
   }
+  async verifyLogout(){
+    await expect(this.loggedIn).toHaveText( "Signup / Login");
+
+  }
 }

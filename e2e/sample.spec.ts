@@ -66,7 +66,7 @@ test("Incorrect Login", async function({ page }) {
     const acctCreatedPage = new AcctCreatedPage(page);
     const accDeletedPage = new AccDeletedPage(page);
 
-    /** 1-Verify that home page is visible successfully */
+    
 
     await homePage.clickSignUp();
     await loginPage.login("csantanaDLS@proton.me", "password");
@@ -77,6 +77,8 @@ test("Incorrect Login", async function({ page }) {
 
 });
 
+
+/** Test Case 4: Logout User */
 test("Logout", async function({ page }) {
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
@@ -85,10 +87,12 @@ test("Logout", async function({ page }) {
     const accDeletedPage = new AccDeletedPage(page);
 
     /** 1-Verify that home page is visible successfully */
-
+    await homePage.verifyPageTitle();  
     await homePage.clickSignUp();
-    await loginPage.login("csantanaDLS@proton.me", "password");
-    await loginPage.verifyIncorrectEmail();
+    await loginPage.signUp("Cesar", "csantanaDLS+80@proton.me");
+    await signUpPage.signUp("Cesar","csantanaDLS+80@proton.me","password","30","June","1998","Ave. Principal","United States","Florida","Doral","33198","6789998212")
+    await acctCreatedPage.verifyacctCreation();
+    await homePage.logout();
 
 
   
