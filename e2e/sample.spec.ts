@@ -7,6 +7,7 @@ import { SignUpPage } from '../pages/signup.page';
 import { AcctCreatedPage} from '../pages/acctCreated.page';
 import { AccDeletedPage } from '../pages/acctDeleted.page';
 import { ContactUsPage } from '../pages/contactUs.page';
+import { verify } from 'crypto';
 
 test.beforeEach( async ({page}) => {
 
@@ -135,7 +136,8 @@ test ("Contact Us Form", async function ({page}){
     await homePage.verifyPageTitle();  
     await homePage.contactUs();
     await contactUsPage.verifyGetInTouch();
-    await contactUsPage.uploadFile("cesar","csantanaDLS@proton.me","subject","message","fixtures\contactUs.pdf")
+    await contactUsPage.uploadFile("cesar","csantanaDLS@proton.me","subject","message",'../playwright/fixtures/contactUs.pdf');
+    await contactUsPage.verifySuccess();
     
   
 }); 

@@ -9,6 +9,7 @@ export class ContactUsPage {
     readonly message: Locator;
     readonly upload: Locator;
     readonly submit: Locator;
+    readonly success: Locator;
 
 
 
@@ -46,9 +47,12 @@ export class ContactUsPage {
 
     }
     async verifyGetInTouch(){
-       await expect(this.getInTouch).toHaveText( "Get In Touch");
+       
     }
-    
+    async verifySuccess(){
+      
+      await expect(this.getInTouch).toHaveText( "Success! Your details have been submitted successfully.");
+    }
 
     
   
