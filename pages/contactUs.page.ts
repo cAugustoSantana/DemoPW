@@ -10,6 +10,7 @@ export class ContactUsPage {
     readonly upload: Locator;
     readonly submit: Locator;
     readonly success: Locator;
+    readonly home: Locator;
 
 
 
@@ -24,6 +25,8 @@ export class ContactUsPage {
       this.message = page.locator ('[data-qa="message"]');
       this.upload = page.locator('[name="upload_file"]');
       this.submit = page.locator('[data-qa="submit-button"]');
+      this.success = page.locator('//*[@id="contact-page"]/div[2]/div[1]/div/div[2]');
+      this.home = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[1]/a');
 
     }
 
@@ -33,6 +36,7 @@ export class ContactUsPage {
       await this.email.fill(email);
       await this.subject.fill(subject);
       await this.message.fill(message);
+      await this.upload.click();
       await this.upload.setInputFiles(filePath);
 
       await this.submit.click();
@@ -51,9 +55,13 @@ export class ContactUsPage {
     }
     async verifySuccess(){
       
-      await expect(this.getInTouch).toHaveText( "Success! Your details have been submitted successfully.");
+      await expect(this.success).toHaveText( "Success! Your details have been submitted successfully.");
     }
 
+    async goHome(){
+      
+      await this.home.click();
+    }
     
   
     

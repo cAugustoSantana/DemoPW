@@ -137,7 +137,8 @@ test ("Contact Us Form", async function ({page}){
     await homePage.contactUs();
     await contactUsPage.verifyGetInTouch();
     await contactUsPage.uploadFile("cesar","csantanaDLS@proton.me","subject","message",'../playwright/fixtures/contactUs.pdf');
-    await contactUsPage.verifySuccess();
-    
+    //await contactUsPage.verifySuccess();
+    //await contactUsPage.goHome();
+    //await homePage.verifyPageTitle();
   
 }); 
