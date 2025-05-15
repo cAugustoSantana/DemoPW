@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test';
 
-export class contactUsPage {
+export class ContactUsPage {
     readonly page: Page;
     readonly getInTouch: Locator;
     readonly name: Locator;
@@ -8,6 +8,7 @@ export class contactUsPage {
     readonly subject: Locator;
     readonly message: Locator;
     readonly upload: Locator;
+    readonly submit: Locator;
 
 
 
@@ -21,9 +22,33 @@ export class contactUsPage {
       this.subject = page.locator('[data-qa="subject"]');
       this.message = page.locator ('[data-qa="message"]');
       this.upload = page.locator('[name="upload_file"]');
+      this.submit = page.locator('[data-qa="submit-button"]');
 
     }
 
+    async uploadFile(name,email,subject,message,filePath){
+
+      await this.name.fill(name);
+      await this.email.fill(email);
+      await this.subject.fill(subject);
+      await this.message.fill(message);
+      await this.upload.setInputFiles(filePath);
+
+      await this.submit.click();
+
+      this.page.on("dialog", async (alert) =>
+      {
+        const text = alert.message
+        console.log(text);
+        await alert.accept();
+      })
+
+
+    }
+    async verifyGetInTouch(){
+       await expect(this.getInTouch).toHaveText( "Get In Touch");
+    }
+    
 
     
   

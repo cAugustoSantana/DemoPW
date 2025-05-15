@@ -6,6 +6,7 @@ import { LoginPage } from '../pages/login.page';
 import { SignUpPage } from '../pages/signup.page';
 import { AcctCreatedPage} from '../pages/acctCreated.page';
 import { AccDeletedPage } from '../pages/acctDeleted.page';
+import { ContactUsPage } from '../pages/contactUs.page';
 
 test.beforeEach( async ({page}) => {
 
@@ -121,17 +122,20 @@ test ("Register User with existing email", async function ({page}){
 
 }); 
 
-
+ 
 /**Test Case 6: Contact Us Form */
 test ("Contact Us Form", async function ({page}){
 
-    const loginPage = new LoginPage(page);
+
     const homePage = new HomePage(page);
-    const signUpPage = new SignUpPage(page);
-    const acctCreatedPage = new AcctCreatedPage(page);
+    const contactUsPage = new ContactUsPage(page);
    
 
     /** 1-Verify that home page is visible successfully */
     await homePage.verifyPageTitle();  
+    await homePage.contactUs();
+    await contactUsPage.verifyGetInTouch();
+    await contactUsPage.uploadFile("cesar","csantanaDLS@proton.me","subject","message","fixtures\contactUs.pdf")
+    
   
 }); 
