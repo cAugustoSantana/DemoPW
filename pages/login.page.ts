@@ -10,6 +10,7 @@ export class LoginPage {
   readonly emailFieldSignUp: Locator;
   readonly signupBtnSignUp: Locator;
   readonly incorrectEmail: Locator;
+  readonly existingEmail: Locator;
 
 
   constructor(page: Page) {
@@ -22,6 +23,7 @@ export class LoginPage {
     this.emailFieldLogin = page.locator ('[data-qa="login-password"]');
     this.loginBtn = page.locator ('[data-qa="login-button"]');
     this.incorrectEmail = page.locator ('//*[@id="form"]/div/div/div[1]/div/form/p');
+    this.existingEmail = page.locator('//*[@id="form"]/div/div/div[3]/div/form/p')
   }
 
   async login(a,b) {
@@ -45,6 +47,8 @@ export class LoginPage {
     await expect(this.incorrectEmail).toHaveText("Your email or password is incorrect!")
    }
 
-
+   async verifyExistingEmail(){
+    await expect(this.existingEmail).toHaveText("Email Address already exist!")
+   }
  
 }

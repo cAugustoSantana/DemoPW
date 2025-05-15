@@ -8,6 +8,7 @@ export class HomePage {
   readonly deleteLink: Locator;
   readonly loggedInMessage: Locator;
   readonly logoutLink: Locator;
+  readonly contactUS: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -17,6 +18,7 @@ export class HomePage {
     this.deleteLink = page.locator ('//*[@id="header"]/div/div/div/div[2]/div/ul/li[5]/a');
     this.loggedInMessage = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[10]/a');
     this.logoutLink = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[4]/a');
+    this.contactUS = page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[8]/a');
   }
 
   async clickHome() {
@@ -46,5 +48,8 @@ export class HomePage {
   async verifyLogout(){
     await expect(this.loggedIn).toHaveText( "Signup / Login");
 
+  }
+  async contactUs(){
+    await this.contactUS.click();
   }
 }
